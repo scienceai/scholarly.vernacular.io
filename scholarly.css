@@ -73,7 +73,7 @@ body > section, article {
   margin: 0 auto 120px auto;
   max-width: 900px;
 }
-section:target h2, article:target h1 {
+section:target h2, section:target h3, article:target h1 {
   color: #2196f3;
 }
 article {
@@ -88,6 +88,7 @@ article {
   font-size: 13px;
   font-weight: 300;
   line-height: 24px;
+  -moz-hyphens: auto;
   hyphens: auto;
 }
 h1, h2, h3 {
@@ -116,7 +117,7 @@ h3 {
   font-size: 16px;
 }
 dfn {
-  font-weight: bold;
+  text-decoration: underline;
 }
 a {
   color: #2196f3;
@@ -135,7 +136,17 @@ pre {
   padding-left: 16px;
   background: var(--color_hl02_a-yellow);
 }
-
+pre, code, a[property="schema:citation"] {
+  -moz-hyphens: none;
+  hyphens: none;
+}
+code:not([class]) {
+  color: darkorange;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.3em;
+  padding: 0.2em;
+  background: #FDFDFD;
+}
 
 footer {
   font-size: 13px;
@@ -183,9 +194,47 @@ section[typeof='sa:ReferenceList'] cite::after {
   content: '»';
 }
 
-/*
-  XXX these need to apply to header and footer as well
-*/
+table {
+  width: 100%;
+  font: sans-serif;
+  letter-spacing: .25px;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  background: #fff;
+}
+table th {
+  padding: 8px 16px 8px 16px;
+  white-space: nowrap;
+  border-bottom: 0px;
+  border-top: 0px;
+  letter-spacing: .5px;
+  line-height: 15px;
+  text-align: left;
+}
+table td {
+  padding: 12px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  line-height: 18px;
+  vertical-align: top;
+  font-weight: 300;
+}
+table tbody tr:hover {
+  background-color: #F5F5F5;
+}
+caption {
+  font-family: "Libre Baskerville", Times, serif;
+  text-align: left;
+  padding: 16px;
+  margin-top: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  caption-side: bottom;
+  font-style: italic;
+  /* we're removing the border (28+4=32) + horizontal padding (88+108=196px) = 228px */
+  max-width: calc(100vw - 228px)
+}
+
 
 /* wide screen */
 @media screen and (min-width: 1900px) {

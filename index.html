@@ -5,29 +5,17 @@
     <title>Scholarly HTML — Markedly Smart</title>
     <!-- <link rel="stylesheet" href="http://vernacular.io/vernacular.css"> -->
     <link rel="stylesheet" href="scholarly.css">
+    <link rel="stylesheet" href="node_modules/prismjs/themes/prism-coy.css">
+    <script src="node_modules/prismjs/prism.js" defer></script>
   </head>
-  <body prefix="schema: http://schema.org/ owl: http://www.w3.org/2002/07/owl#
-                xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/
-                rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-                bibo: http://purl.org/ontology/bibo/ xml: http://www.w3.org/XML/1998/namespace
-                vs: http://www.w3.org/2003/06/sw-vocab-status/ns#
-                rdfs: http://www.w3.org/2000/01/rdf-schema#">
+  <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
     <header>
       <p class="title">Scholarly HTML</p>
       <p class="subtitle">Markedly Smart</p>
     </header>
-    <!-- <nav>
-      <ul>
-        <li><a href="#what">What?</a></li>
-        <li><a href="#why">Why?</a></li>
-        <li><a href="#how">How?</a></li>
-        <li><a href="#where">Where?</a></li>
-        <li><a href="#huh">Huh?</a></li>
-      </ul>
-    </nav> -->
     <article id="what" typeof="schema:ScholarlyArticle">
       <h1>What is Scholarly HTML?</h1>
-      <section typeof="sa:Abstract">
+      <section typeof="sa:Abstract" id="abstract">
         <h2>Abstract</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -42,7 +30,7 @@
           write this last
         -->
       </section>
-      <section typeof="sa:MaterialsAndMethods">
+      <section typeof="sa:MaterialsAndMethods" id="motivation">
         <h2>Motivation</h2>
         <p>
           Scholarly articles are still primarily encoded as unstructured graphics formats in which
@@ -55,9 +43,10 @@
         <p>
           According to the New York Times, adding structured information to their recipes (instead
           of exposing simply as plain text) improved their discoverability to the point of producing
-          an immediate rise of 52 percent in traffic (<a href="#ref-nyt">NYT, 2014</a>). At this
-          point in time, cupcake recipes are reaping greater benefits from modern data format
-          practices than the whole scientific endeavour.
+          an immediate rise of 52 percent in traffic (<a href="#ref-nyt"
+          property="schema:citation">NYT, 2014</a>). At this point in time, cupcake recipes are
+          reaping greater benefits from modern data format practices than the whole scientific
+          endeavour.
         </p>
         <p>
           This is not solely a loss for the high principles of knowledge sharing in science, it also
@@ -71,39 +60,161 @@
           To address these issues, we have followed an approach rooted in established best practices
           for the reuse of open, standard formats. The «HTML Vernacular» body of practice provides
           guidelines for the creation of domain-specific data formats that make use of HTML’s
-          inherent extensibility (<a href="#ref-vernacular">Science.AI, 2015</a>). Using the
-          vernacular foundation overlaid with «schema.org» metadata we have produced a format for
-          the interchange of scholarly articles built on open standards, ready for all to use.
+          inherent extensibility (<a href="#ref-vernacular" property="schema:citation">Science.AI,
+          2015b</a>). Using the vernacular foundation overlaid with «schema.org» metadata we have
+          produced a format for the interchange of scholarly articles built on open standards, ready
+          for all to use.
         </p>
       </section>
-      <section typeof="sa:Results">
+      <section typeof="sa:Results" id="definition">
         <h2>Definition</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+          A <dfn id="scholarly-html">Scholarly HTML document</dfn> is a valid HTML document that
+          follows some additional rules to specialised its meaning and make it predictable to
+          processors wishing to produce or consume scholarly articles. These rules are outlined in
+          the following sections.
         </p>
+        <section id="file-headers">
+          <h3>File &amp; Supporting Structure</h3>
+          <p>
+            The document must be encoded in UTF-8, and transmitted with a media type of
+            <code>text/html</code>. It must feature a <code>DOCTYPE</code> as its preamble.
+          </p>
+          <p>
+            The <code>head</code> element of the document must contain a
+            <code class="language-html">&lt;meta charset="utf-8"></code> element (preferable as its
+            first child) and a <code>title</code> element. All the other content of the
+            <code>head</code> is ignored.
+          </p>
+          <p>
+            The <code>body</code> element must have a <code>prefix</code> attribute, which must
+            declare the following mapping:
+          </p>
+          <table typeof="schema:Table">
+            <thead>
+              <tr>
+                <th>Prefix</th>
+                <th>URL</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>schema</td>
+              <td>http://schema.org/</td>
+            </tr>
+            <tr>
+              <td>xsd</td>
+              <td>http://www.w3.org/2001/XMLSchema#</td>
+            </tr>
+            <tr>
+              <td>sa</td>
+              <td>https://ns.science.ai/</td>
+            </tr>
+            <caption>
+              The list of mappings that must be declared by the <code>body</code> element.
+            </caption>
+          </table>
+          <p>
+            Having to declare prefixes is undoubtably an annoyance and it does hurt the human
+            authorability of the format (since hand-creating a document essentially requires a
+            boilerplate prefix declaration). This trade-off is made for several reasons. The most
+            important motivation is that having predictable prefixes means that the content can be
+            styled with CSS using reliable attribute selectors on the semantic information that
+            describes the document’s structure. The alternative would be to use URLs everywhere,
+            such that instead of <code>sa:Abstract</code> we would have
+            <code>https://ns.science.ai/Abstract</code>; but in practice that approach is more
+            painful since the content then becomes bloated with URLs that are longer than is
+            comfortable.
+          </p>
+          <p>
+            The RDFa content of the article must systematically make use of these prefixes when the
+            values match their URLs as prefixes. Authors may declare other prefix-URL mappings in
+            the <code>prefix</code> attribute of the <code>body</code> element (or
+            <code>prefix</code> attributes elsewhere), including other prefixes mapping to the same
+            URLs if needed, but inside of the article’s content these prefixes must be used for
+            these URLs.
+          </p>
+        </section>
+        <section id="article">
+          <h3>Article Structure</h3>
+          <p>
+            The article content is everything that is contained inside the first
+            <code>article</code> element in document order that has a
+            <code>typeof="schema:ScholarlyArticle"</code>. Everything part of the <code>body</code>
+            outside of that subtree is ignored. This enables publishers to surround the article
+            content with any amount of supporting markup, for instance for headers, footers,
+            or navigation, as well as to wrap the article inside arbitrary markup that may be
+            needed for stylistic reasons.
+          </p>
+          <p>
+            The first element child of the <code>article</code> element must be an <code>h1</code>
+            heading that serves as the primary title for the document. It may itself contain markup.
+            The white-space-normalised text value of the <code>h1</code> must appear as a substring
+            of the white-space-normalised text value of the <code>title</code> element. This ensures
+            semantic alignment between the two, while enabling publishers to add their name to the
+            <code>title</code> so as to identify themselves there alongside the content.
+          </p>
+          <p>
+            The containers for authors, affiliations, and funding are not specified yet. There is
+            an <a href="https://github.com/scienceai/scholarly.vernacular.io/issues">open issue</a>
+            on this topic.
+          </p>
+          <p>
+            Any children of <code>article</code> that are not <code>section</code> elements are
+            ignored.
+          </p>
+          <p>
+            The <code>section</code> elements can be nested arbitrarily deep. Each
+            <code>section</code> element must have as its first element child an <code>hX</code>
+            heading element the numeric part of which must be the number of <code>section</code>
+            ancestor elements that heading elements has up to the <code>article</code> element, plus
+            one. If the numeric part is greater than 6, then <code>h6</code> must be used but an
+            <code>aria-level</code> attribute must be added that reflects the accurate depth.
+            (The <code>aria-level</code> attribute can be used at lower depths but is not required
+            there.)
+          </p>
+          <p>
+            Each <code>section</code> element may contain an arbitrary number of
+            <a href="#hunk-elements">hunk elements</a>, followed by an arbitrary number of
+            <code>section</code> elements being subsections. Note that
+            <a href="#hunk-elements">hunk elements</a> must imperatively appear <em>before</em> the
+            subsections.
+          </p>
+          <p>
+            Sections are expected to be typed using the <code>typeof</code> attribute. The following
+            <code>typeof</code> values are currently understood:
+          </p>
+          <ul>
+            <li><code>sa:Abstract</code></li>
+            <li><code>sa:MaterialsAndMethods</code></li>
+            <li><code>sa:Results</code></li>
+            <li><code>sa:Conclusion</code></li>
+            <li><code>sa:Acknowledgements</code></li>
+            <li><code>sa:ReferenceList</code></li>
+          </ul>
+          <p>
+            Hopefully these types are largely self-documenting, they are described further in the
+            Scholarly Article ontology
+            (<a href="#ref-sa-ontology" property="schema:citation">Science.AI, 2015a</a>).
+          </p>
+          <p>
+            The section typed sa:ReferenceList has special processing rules described in the
+            <a href="#references-section">References section</a>.
+          </p>
+        </section>
         <!--
           XXX
           - copy & clean up stuff from article-interchange
-          - utf8
-          - DOCTYPE
-          - meta/@utf8
-          - title
-          - body/@prefix
-          - article/@typeof
-          - sections
           - references
           - block elements
+          - table in figures (but the caption is the table's)
+          - pre/code in figure, with language-xxx (see HTML reference)
           - inlines
+          - link flavours
           - order of content
           - reference list can be dl or ol
         -->
       </section>
-      <section typeof="sa:Conclusion">
+      <section typeof="sa:Conclusion" id="conclusion">
         <h2>Conclusion</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -118,10 +229,11 @@
           - current status
           - what it does
           - what it could do next, GH issues, DPUB support
+          https://github.com/scienceai/scholarly.vernacular.io/issues
           - still an area for improvement
           -->
       </section>
-      <section typeof="sa:ReferenceList">
+      <section typeof="sa:ReferenceList" id="references">
         <h2>References</h2>
         <dl>
           <dt>NYT, 2014</dt>
@@ -136,7 +248,16 @@
             </span>;
             <time property="schema:datePublished" datetime="2014-03" datatype="xsd:gYearMonth">2014 Mar</time>.
           </dd>
-          <dt>Science.AI, 2015</dt>
+          <dt>Science.AI, 2015a</dt>
+          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle" resource="https://github.com/scienceai/scholarly-article/blob/master/scholarly-article.json">
+            <cite property="schema:name"><a href="https://github.com/scienceai/scholarly-article/blob/master/scholarly-article.json">The Scholarly Article ontology</a></cite>,
+            by
+            <span property="schema:author" typeof="schema:Person">
+              <span property="schema:name">Science.AI</span>
+            </span>;
+            <time property="schema:datePublished" datetime="2015-09" datatype="xsd:gYearMonth">2015 Sep</time>.
+          </dd>
+          <dt>Science.AI, 2015b</dt>
           <dd id="ref-vernacular" typeof="schema:ScholarlyArticle" resource="http://vernacular.io/">
             <cite property="schema:name"><a href="http://vernacular.io/">Vernacular — HTML Made Special</a></cite>,
             by

@@ -1,0 +1,78 @@
+{
+  "name": "prismjs",
+  "version": "1.3.0",
+  "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
+  "main": "prism.js",
+  "scripts": {
+    "test": "mocha tests/testrunner-tests.js && mocha tests/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeaVerou/prism.git"
+  },
+  "keywords": [
+    "prism",
+    "highlight"
+  ],
+  "author": {
+    "name": "Lea Verou"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "gulp": "^3.8.6",
+    "gulp-concat": "^2.3.4",
+    "gulp-header": "^1.0.5",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^0.3.1",
+    "gulp-replace": "^0.5.4",
+    "mocha": "^2.2.5",
+    "yargs": "^3.26.0"
+  },
+  "gitHead": "ad97b23be583f01e84ec5f17197d2c2b109ca7d0",
+  "bugs": {
+    "url": "https://github.com/LeaVerou/prism/issues"
+  },
+  "homepage": "https://github.com/LeaVerou/prism",
+  "_id": "prismjs@1.3.0",
+  "_shasum": "fb23e5935de898487c034c1431bd0e5c1c09ff31",
+  "_from": "prismjs@*",
+  "_npmVersion": "2.14.4",
+  "_nodeVersion": "4.1.2",
+  "_npmUser": {
+    "name": "leaverou",
+    "email": "lea@verou.me"
+  },
+  "dist": {
+    "shasum": "fb23e5935de898487c034c1431bd0e5c1c09ff31",
+    "tarball": "http://registry.npmjs.org/prismjs/-/prismjs-1.3.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "charleshansen",
+      "email": "chansen87@gmail.com"
+    },
+    {
+      "name": "leaverou",
+      "email": "lea@verou.me"
+    },
+    {
+      "name": "rdy",
+      "email": "ryan.dy@gmail.com"
+    },
+    {
+      "name": "vinsonchuong",
+      "email": "vinsonchuong@gmail.com"
+    },
+    {
+      "name": "stubbornella",
+      "email": "nicole@stubbornella.org"
+    },
+    {
+      "name": "gpleiss",
+      "email": "gpleiss@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/prismjs/-/prismjs-1.3.0.tgz"
+}
