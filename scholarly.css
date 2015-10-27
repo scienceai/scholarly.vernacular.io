@@ -15,11 +15,15 @@
 }
 body {
   font-family: "Libre Baskerville", Times, serif;
+  background: #f7f7f7;
+  color: #434343;
 }
 header {
   border-top: 8px solid #2196f3;
   border-bottom: 2px solid #BDD5E9;
   box-shadow: 2px 0 4px #BCBCBC;
+  margin-bottom: 64px;
+  background: #fff;
 }
 header p.title, header p.subtitle {
   max-width: 900px;
@@ -64,9 +68,74 @@ nav a:hover {
   text-shadow: 1px 1px 0px #cc4500;
 }*/
 
+body > section, article {
+  padding: 0 10px;
+  margin: 0 auto 120px auto;
+  max-width: 900px;
+}
+section:target h2, article:target h1 {
+  color: #2196f3;
+}
+article {
+  /* the padding is 116px 116px 80px 116px, from which we remove the border */
+  padding: 88px 88px 72px 108px;
+  background: #fff;
+  border-top: 28px solid transparent;
+  border-right: 28px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 4px solid transparent;
+  border-image: url('card-bg.png') 28 28 8 4 repeat;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 24px;
+  hyphens: auto;
+}
+h1, h2, h3 {
+  font-variant: small-caps;
+  text-align: center;
+  font-weight: 300;
+}
+h1 {
+  padding-top:  16px;
+  padding-bottom: 16px;
+  letter-spacing: .75px;
+  font-size: 24px;
+  line-height: 32px;
+}
+h2 {
+  padding-top: 16px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  letter-spacing: .75px;
+  font-size: 20px;
+}
+h3 {
+  padding-top: 16px;
+  padding-bottom: 0;
+  letter-spacing:.5px;
+  font-size: 16px;
+}
+dfn {
+  font-weight: bold;
+}
 a {
   color: #2196f3;
 }
+a, :link, :visited {
+  text-decoration: none;
+  color: #2196f3;
+}
+a:active {
+  color: #64b5f6;
+}
+
+pre {
+  box-sizing: border-box;
+  border-left: 3px double var(--color_grey_500);
+  padding-left: 16px;
+  background: var(--color_hl02_a-yellow);
+}
+
 
 footer {
   font-size: 16px;
@@ -81,8 +150,9 @@ footer p {
   max-width: 900px;
   padding: 14px 10px;
   margin: 0 auto;
+  text-align: right;
 }
-footer a {
+footer a:link, footer a:visited {
   color: white;
 }
 footer img {
@@ -91,4 +161,67 @@ footer img {
   border-radius: 3px;
   padding: 1px;
   box-sizing: content-box;
+}
+
+
+/*
+  XXX these need to apply to header and footer as well
+*/
+
+/* wide screen */
+@media screen and (min-width: 1900px) {
+  article {
+    max-width: 1200px;
+    font-size: 16px;
+    line-height: 30px;
+  }
+  header p.title, header p.subtitle, footer p {
+    max-width: 1200px;
+  }
+}
+@media screen and (max-width: 979px) {
+  article {
+    width: 100%;
+    padding: 115px 116px 79px 116px;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    border-left: none;
+    border-right: none;
+  }
+}
+@media screen and (max-width: 799px) {
+  article {
+    padding: 57px 58px 39px 58px;
+  }
+}
+@media screen and (max-width: 399px) {
+  article {
+    padding: 28px 29px 19px 29px;
+  }
+}
+
+@media print {
+  header {
+    display: none;
+  }
+  footer {
+    background: #fff;
+    border: none;
+    color: #434343;
+  }
+  body {
+    margin: 0;
+    background: #fff;
+  }
+  article {
+    width: 100%;
+    border: none;
+    padding: 2em;
+  }
+  footer a:link, footer a:visited, a:link, a:visited {
+    color: inherit;
+  }
+  pre {
+    background: transparent;
+  }
 }
