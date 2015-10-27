@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang='en-GB'>
+<html lang="en-GB">
   <head>
     <meta charset="utf-8">
     <title>Scholarly HTML — Markedly Smart</title>
     <!-- <link rel="stylesheet" href="http://vernacular.io/vernacular.css"> -->
     <link rel="stylesheet" href="scholarly.css">
   </head>
-  <body>
+  <body prefix="schema: http://schema.org/ owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# bibo: http://purl.org/ontology/bibo/ xml: http://www.w3.org/XML/1998/namespace vs: http://www.w3.org/2003/06/sw-vocab-status/ns# rdfs: http://www.w3.org/2000/01/rdf-schema#">
     <header>
       <p class="title">Scholarly HTML</p>
       <p class="subtitle">Markedly Smart</p>
@@ -20,13 +20,90 @@
         <li><a href="#huh">Huh?</a></li>
       </ul>
     </nav> -->
-    <article id='what'>
+    <article id="what" typeof="schema:ScholarlyArticle">
       <h1>What is Scholarly HTML?</h1>
+      <section typeof="sa:Abstract">
+        <h2>Abstract</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+        <!--
+          XXX
+          write this last
+        -->
+      </section>
+      <section typeof="sa:MaterialsAndMethods">
+        <h2>Motivation</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </section>
+      <section typeof="sa:Results">
+        <h2>Definition</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+        <!--
+          - reference list can be dl or ol
+        -->
+      </section>
+      <section typeof="sa:Conclusion">
+        <h2>Conclusion</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </section>
+      <section typeof="sa:Acknowledgements">
+        <h2>Acknowledgements</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </section>
+      <section typeof="sa:ReferenceList">
+        <h2>References</h2>
+        <dl>
+          <dt>Science.AI, 2015</dt>
+          <dd id="ref-vernacular" typeof="schema:ScholarlyArticle" resource="http://vernacular.io/">
+            <cite property="schema:name"><a href="http://vernacular.io/">Vernacular — HTML Made Special</a></cite>,
+            by
+            <span property="schema:author" typeof="schema:Person">
+              <span property="schema:name">Science.AI</span>
+            </span>;
+            <time property="schema:datePublished" datetime="2015-10" datatype="xsd:gYearMonth">2015 Oct</time>.
+          </dd>
+        </dl>
+      </section>
     </article>
     <!--
-      prefix
-      favicon
-      abstract
+      XXX
+        - favicon
+        - script that adds sectionals
+        - highlight on targets for citations
     -->
     <footer>
       <p>

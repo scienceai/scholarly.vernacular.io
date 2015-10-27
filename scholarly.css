@@ -138,7 +138,7 @@ pre {
 
 
 footer {
-  font-size: 16px;
+  font-size: 13px;
   box-shadow: -1px 0px 2px #BCBCBC;
   background: #BDD5E9;
   /*border-top: 2px solid #F9EABD;*/
@@ -163,6 +163,22 @@ footer img {
   box-sizing: content-box;
 }
 
+section {
+  margin-top: 90px;
+}
+section[typeof='sa:ReferenceList'] dt {
+  float: left;
+  margin-right: 5px;
+}
+section[typeof='sa:ReferenceList'] dt::after {
+  content: ',';
+}
+section[typeof='sa:ReferenceList'] cite::before {
+  content: '«';
+}
+section[typeof='sa:ReferenceList'] cite::after {
+  content: '»';
+}
 
 /*
   XXX these need to apply to header and footer as well
@@ -177,6 +193,9 @@ footer img {
   }
   header p.title, header p.subtitle, footer p {
     max-width: 1200px;
+  }
+  footer {
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 979px) {
@@ -197,6 +216,9 @@ footer img {
 @media screen and (max-width: 399px) {
   article {
     padding: 28px 29px 19px 29px;
+  }
+  footer {
+    font-size: 10px;
   }
 }
 
