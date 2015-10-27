@@ -197,20 +197,68 @@
             (<a href="#ref-sa-ontology" property="schema:citation">Science.AI, 2015a</a>).
           </p>
           <p>
-            The section typed sa:ReferenceList has special processing rules described in the
-            <a href="#references-section">References section</a>.
+            The section typed <code>sa:ReferenceList</code> has special processing rules described
+            in the <a href="#references-section">References section</a>.
+          </p>
+        </section>
+        <section id="hunk-elements">
+          <h3>Hunk Elements</h3>
+          <p>
+            <dfn>Hunk elements</dfn> are the meaningful blocks from which sections are built. They
+            contain text and <a href="#inline-element">inline elements</a>. There are several
+            types of hunk elements.
+          </p>
+          <p>
+            The most common hunk element is <code>p</code>, which is used to capture paragraphs. It
+            requires no special processing.
+          </p>
+          <p>
+            The <code>aside</code> hunk element is used to capture text boxes. If it contains an
+            <code>hX</code> heading element, that element must be its first element child and its
+            numeric part must reflect its depth, making use of <code>aria-level</code> according to
+            the same rules as apply for <code>section</code>. The other childre of
+            <code>aside</code> must all be hunk elements.
+          </p>
+          <p>
+            The <code>figure</code> element is a general container for content units that are
+            embedded inside the main body of the text. It can come in several flavours that are
+            dictated by its <code>typeof</code> attribute.
+          </p>
+          <p>
+            If <code>figure</code> has <code>typeof="sa:Image"</code> then it is an image container.
+            It must contain an <code>img</code> child element and should contain a
+            <code>figcaption</code> labelling that image. An example of an image figure would be:
+          </p>
+          <figure typeof="sa:Image">
+            <img src="hop-less.png" width="880" height="655">
+            <figcaption>
+              Reconstruction of Sthenurus stirlingi, by Brian Regal; in
+              «<cite><a
+              href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0109888">Locomotion
+              in Extinct Giant Kangaroos: Were Sthenurines Hop-Less Monsters?</a></cite>», by
+              Christine M. Janis, Karalyn Buttrill, Borja Figueirido.
+            </figcaption>
+          </figure>
+          <p>
+            If <code>figure</code> has <code>typeof="sa:Table"</code> then it is a table container.
+            It must contain nothing other than a <code>table</code> element. If a caption is
+            available, it should be included using the <code>caption</code> child element of the
+            <code>table</code>, and not the <code>figcaption</code> child of the
+            <code>figure</code>.
           </p>
         </section>
         <!--
           XXX
-          - copy & clean up stuff from article-interchange
-          - references
           - block elements
-          - table in figures (but the caption is the table's)
-          - pre/code in figure, with language-xxx (see HTML reference)
-          - inlines
-          - link flavours
-          - order of content
+            - aside
+            - figure
+              . img
+              . table in figures (but the caption is the table's)
+              . pre/code in figure, with language-xxx (see HTML reference)
+              . math (specify annotation)
+          - inline elements
+            - link flavours
+          - references
           - reference list can be dl or ol
         -->
       </section>
@@ -249,8 +297,11 @@
             <time property="schema:datePublished" datetime="2014-03" datatype="xsd:gYearMonth">2014 Mar</time>.
           </dd>
           <dt>Science.AI, 2015a</dt>
-          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle" resource="https://github.com/scienceai/scholarly-article/blob/master/scholarly-article.json">
-            <cite property="schema:name"><a href="https://github.com/scienceai/scholarly-article/blob/master/scholarly-article.json">The Scholarly Article ontology</a></cite>,
+          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+              resource="https://github.com/scienceai/scholarly-article/blob/master/scholarly-article.json">
+            <cite property="schema:name"><a
+              href="https://github.com/scienceai/scholarly-article/blob/master/scholarly-article.json">The
+              Scholarly Article ontology</a></cite>,
             by
             <span property="schema:author" typeof="schema:Person">
               <span property="schema:name">Science.AI</span>
@@ -274,6 +325,7 @@
         - favicon
         - script that adds sectionals
         - highlight on targets for citations
+        - mention this article used Scholarly HTML (in abstract)
     -->
     <footer>
       <p>
