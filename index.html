@@ -6,7 +6,12 @@
     <!-- <link rel="stylesheet" href="http://vernacular.io/vernacular.css"> -->
     <link rel="stylesheet" href="scholarly.css">
   </head>
-  <body prefix="schema: http://schema.org/ owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# bibo: http://purl.org/ontology/bibo/ xml: http://www.w3.org/XML/1998/namespace vs: http://www.w3.org/2003/06/sw-vocab-status/ns# rdfs: http://www.w3.org/2000/01/rdf-schema#">
+  <body prefix="schema: http://schema.org/ owl: http://www.w3.org/2002/07/owl#
+                xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/
+                rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+                bibo: http://purl.org/ontology/bibo/ xml: http://www.w3.org/XML/1998/namespace
+                vs: http://www.w3.org/2003/06/sw-vocab-status/ns#
+                rdfs: http://www.w3.org/2000/01/rdf-schema#">
     <header>
       <p class="title">Scholarly HTML</p>
       <p class="subtitle">Markedly Smart</p>
@@ -40,12 +45,35 @@
       <section typeof="sa:MaterialsAndMethods">
         <h2>Motivation</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+          Scholarly articles are still primarily encoded as unstructured graphics formats in which
+          most of the information initially created by research, or even just in the text, is lost.
+          This was an acceptable, if deplorable, condition when viable alternatives did not seem
+          possible, but document technology has today reached a level of maturity and universality
+          that makes this situation no longer tenable. Information cannot be disseminated if it is
+          destroyed before even having left its creator’s laptop.
+        </p>
+        <p>
+          According to the New York Times, adding structured information to their recipes (instead
+          of exposing simply as plain text) improved their discoverability to the point of producing
+          an immediate rise of 52 percent in traffic (<a href="#ref-nyt">NYT, 2014</a>). At this
+          point in time, cupcake recipes are reaping greater benefits from modern data format
+          practices than the whole scientific endeavour.
+        </p>
+        <p>
+          This is not solely a loss for the high principles of knowledge sharing in science, it also
+          has very immediate pragmatic consequences. Any tool, any service that tries to integrate
+          with scholarly publishing has to spend the brunt of its complexity (or budget) extracting
+          data the author would have willingly shared out of antiquated formats. This places
+          stringent limits on the improvement of the scholarly toolbox, on the discoverability of
+          scientific knowledge, and particularly on processes of meta-analysis.
+        </p>
+        <p>
+          To address these issues, we have followed an approach rooted in established best practices
+          for the reuse of open, standard formats. The «HTML Vernacular» body of practice provides
+          guidelines for the creation of domain-specific data formats that make use of HTML’s
+          inherent extensibility (<a href="#ref-vernacular">Science.AI, 2015</a>). Using the
+          vernacular foundation overlaid with «schema.org» metadata we have produced a format for
+          the interchange of scholarly articles built on open standards, ready for all to use.
         </p>
       </section>
       <section typeof="sa:Results">
@@ -59,6 +87,19 @@
           est laborum.
         </p>
         <!--
+          XXX
+          - copy & clean up stuff from article-interchange
+          - utf8
+          - DOCTYPE
+          - meta/@utf8
+          - title
+          - body/@prefix
+          - article/@typeof
+          - sections
+          - references
+          - block elements
+          - inlines
+          - order of content
           - reference list can be dl or ol
         -->
       </section>
@@ -72,21 +113,29 @@
           sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
         </p>
-      </section>
-      <section typeof="sa:Acknowledgements">
-        <h2>Acknowledgements</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </p>
+        <!--
+          XXX
+          - current status
+          - what it does
+          - what it could do next, GH issues, DPUB support
+          - still an area for improvement
+          -->
       </section>
       <section typeof="sa:ReferenceList">
         <h2>References</h2>
         <dl>
+          <dt>NYT, 2014</dt>
+          <dd id="ref-nyt" typeof="schema:ScholarlyArticle"
+              resource="http://www.scribd.com/doc/224608514/The-Full-New-York-Times-Innovation-Report">
+            <cite property="schema:name"><a
+              href="http://www.scribd.com/doc/224608514/The-Full-New-York-Times-Innovation-Report">The
+              Full New York Times Innovation Report</a></cite>,
+            by
+            <span property="schema:author" typeof="schema:Person">
+              <span property="schema:name">New York Times</span>
+            </span>;
+            <time property="schema:datePublished" datetime="2014-03" datatype="xsd:gYearMonth">2014 Mar</time>.
+          </dd>
           <dt>Science.AI, 2015</dt>
           <dd id="ref-vernacular" typeof="schema:ScholarlyArticle" resource="http://vernacular.io/">
             <cite property="schema:name"><a href="http://vernacular.io/">Vernacular — HTML Made Special</a></cite>,

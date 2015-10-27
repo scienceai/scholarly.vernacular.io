@@ -173,6 +173,9 @@ section[typeof='sa:ReferenceList'] dt {
 section[typeof='sa:ReferenceList'] dt::after {
   content: ',';
 }
+section[typeof='sa:ReferenceList'] dd {
+  margin-bottom: 16px;
+}
 section[typeof='sa:ReferenceList'] cite::before {
   content: '«';
 }
