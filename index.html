@@ -65,6 +65,33 @@
           produced a format for the interchange of scholarly articles built on open standards, ready
           for all to use.
         </p>
+        <p>
+          Our high-level goals were:
+        </p>
+        <ul>
+          <li>
+            Uncompromisingly enabling structured metadata, accessibility, and internationalisation.
+          </li>
+          <li>
+            Pragmatically working in Web browsers, even if it occasionally incurs some markup
+            overhead.
+          </li>
+          <li>
+            Powerfully customisable for inclusion in arbitrary Web sites, while remaining easy to
+            process and interoperable.
+          </li>
+          <li>
+            Entirely built on top of open, royalty-free standards.
+          </li>
+          <li>
+            Long-term viability as a data format.
+          </li>
+        </ul>
+        <p>
+          Additionally, in view of the specific problem we addressed, in the creation of this
+          vernacular we have favoured the reliability of interchange over ease of authoring; but
+          have nevertheless attempted to cater to the later as much as possible.
+        </p>
       </section>
       <section typeof="sa:Results" id="definition">
         <h2>Definition</h2>
@@ -79,6 +106,9 @@
           <p>
             The document must be encoded in UTF-8, and transmitted with a media type of
             <code>text/html</code>. It must feature a <code>DOCTYPE</code> as its preamble.
+          </p>
+          <p>
+            The <code>html</code> root element must feature a valid <code>lang</code> attribute.
           </p>
           <p>
             The <code>head</code> element of the document must contain a
@@ -246,21 +276,98 @@
             <code>table</code>, and not the <code>figcaption</code> child of the
             <code>figure</code>.
           </p>
+          <p>
+            If <code>figure</code> has <code>typeof="sa:Formula"</code> then it is a formula
+            container. It must contain a <code>math</code> element and optionally a
+            <code>figcaption</code> describing the formula. The <code>math</code> element must be
+            valid MathML 3. Additionally, given the dismal state of support for MathML in Web
+            browser the <code>math</code> element must contain an <code>annotation</code>
+            descendant with the TeX equivalent of the formula.
+          </p>
+          <p>
+            If <code>figure</code> has <code>typeof="sa:XXXX"</code> (see the
+            <a href="https://github.com/scienceai/scholarly.vernacular.io/issues/3">relevant
+            issue</a>) then it is a code container. It must contain a <code>pre</code> element
+            and optionally a <code>figcaption</code>. The <code>pre</code> element must contain as
+            its only child a <code>code</code> element. The <code>code</code> element should
+            contain a description of the type of code that it contains (see the previously mentioned
+            issue for discussion of how).
+          </p>
         </section>
-        <!--
-          XXX
-          - block elements
-            - aside
-            - figure
-              . img
-              . table in figures (but the caption is the table's)
-              . pre/code in figure, with language-xxx (see HTML reference)
-              . math (specify annotation)
-          - inline elements
-            - link flavours
-          - references
-          - reference list can be dl or ol
-        -->
+        <section id="inline-elements">
+          <h3>Inline Elements</h3>
+          <p>
+            <dfn>Inline elements</dfn> essentially decorate, describe, and enrich text. Inside of
+            <a href="#hunk-elements">hunk elements</a>, of heading elements, and of captioning
+            elements (<code>caption</code> and <code>figcaption</code>) the following inline
+            elements can be used (and where applicable they can nest within one another):
+          </p>
+          <ul>
+            <li><code>a</code></li>
+            <li><code>abbr</code></li>
+            <li><code>bdi</code></li>
+            <li><code>bdo</code></li>
+            <li><code>cite</code></li>
+            <li><code>code</code></li>
+            <li><code>data</code></li>
+            <li><code>del</code></li>
+            <li><code>dfn</code></li>
+            <li><code>em</code></li>
+            <li><code>img</code> (for small, contextual images that should not be figures)</li>
+            <li><code>ins</code></li>
+            <li><code>kbd</code></li>
+            <li><code>mark</code></li>
+            <li><code>math</code> (for inline equations that should not be figures; they must also contain a TeX annotation)</li>
+            <li><code>meter</code></li>
+            <li><code>q</code></li>
+            <li><code>ruby</code> (with embedded <code>rb</code>, <code>rt</code>, <code>rtc</code>, and <code>rp</code>)</li>
+            <li><code>samp</code></li>
+            <li><code>span</code></li>
+            <li><code>strong</code></li>
+            <li><code>sub</code></li>
+            <li><code>sup</code></li>
+            <li><code>svg</code> (for small, contextual images that should not be figures)</li>
+            <li><code>time</code></li>
+            <li><code>var</code></li>
+            <li><code>wbr</code></li>
+          </ul>
+          <p>
+            If an <code>a</code> element is linking to a citation, then it must have
+            <code>property="schema:citation"</code>; if it is linking to a figure it must have
+            <code>property="schema:hasPart"</code>. These are known as <dfn>flavoured links</dfn>,
+            they can be used to enhance the user experience by treating their behaviour differently
+            from regular links.
+          </p>
+        </section>
+        <section id="references-section">
+          <h3>The References Section</h3>
+          <p>
+            The references section is a special type of <code>section</code> element with
+            <code>typeof="sa:ReferenceList"</code>.
+          </p>
+          <p>
+            Apart from its heading element, it must contain nothing other than an <code>ol</code>
+            or a <code>dl</code> element.
+          </p>
+          <p>
+            If using a <code>dl</code> element, its content must be exclusively a strictly
+            alternating sequence of <code>dt</code> then <code>dd</code> elements, with the latter
+            being the citation-bearing element. The <code>dt</code> is used as a label in some
+            citation formats.
+          </p>
+          <p>
+            If using an <code>ol</code>, then its content is only <code>li</code> elements that are
+            the citation-bearing elements.
+          </p>
+          <p>
+            The citation-bearing element will have an <code>id</code> and be
+            <code>typeof="sa:ScholarlyArticle"</code> (see
+            <a href="https://github.com/scienceai/scholarly.vernacular.io/issues/2">#2</a>). Its
+            content follows the «flexcite» format (being defined as part of this document, see
+            <a href="https://github.com/scienceai/scholarly.vernacular.io/issues/4">#4</a>). The
+            references section of this document is an example.
+          </p>
+        </section>
       </section>
       <section typeof="sa:Conclusion" id="conclusion">
         <h2>Conclusion</h2>
