@@ -211,6 +211,10 @@ caption {
   max-width: calc(100vw - 228px)
 }
 
+/* this is for a bug in PrismJS 1.3.0 that renders code as pre */
+:not(pre) > code[class*='language-'] {
+  white-space: normal;
+}
 
 /* wide screen */
 @media screen and (min-width: 1900px) {
