@@ -38,35 +38,6 @@ header p.title {
 header p.subtitle {
   margin-bottom: 8px;
 }
-/*nav {
-  background: #BDD5E9;
-  margin-bottom: 120px;
-}
-nav ul {
-  max-width: 900px;
-  padding: 0 10px;
-  list-style-type: none;
-  display: flex;
-  margin: 0 auto;
-  justify-content: space-around;
-}
-nav li {
-  display: block;
-  flex: 1;
-}
-nav a {
-  color: #fffdfa;
-  text-shadow: 1px 1px 0px #7a5f52;
-  text-decoration: none;
-  font-size: 20px;
-  display: block;
-  padding: 10px 0;
-  text-align: center;
-}
-nav a:hover {
-  background: #852d00;
-  text-shadow: 1px 1px 0px #cc4500;
-}*/
 
 body > section, article {
   padding: 0 10px;
@@ -128,6 +99,11 @@ a, :link, :visited {
 }
 a:active {
   color: #64b5f6;
+}
+article img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
 }
 
 pre {
