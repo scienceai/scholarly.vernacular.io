@@ -2,6 +2,7 @@
 <html lang="en-GB">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Scholarly HTML — Markedly Smart</title>
     <link rel="stylesheet" href="scholarly.css">
     <link rel="stylesheet" href="node_modules/prismjs/themes/prism-coy.css">
@@ -112,8 +113,10 @@
           <p>
             The <code>head</code> element of the document must contain a
             <code class="language-html">&lt;meta charset="utf-8"></code> element (preferable as its
-            first child) and a <code>title</code> element. All the other content of the
-            <code>head</code> is ignored.
+            first child), a
+            <code class="language-html">&lt;meta name="viewport" content="width=device-width"></code>
+            element (and no other viewport <code>meta</code>), and a <code>title</code> element. All
+            the other content of the <code>head</code> is ignored.
           </p>
           <p>
             The <code>body</code> element must have a <code>prefix</code> attribute, which must
