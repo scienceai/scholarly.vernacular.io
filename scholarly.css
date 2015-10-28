@@ -235,15 +235,27 @@ caption {
     border-left: none;
     border-right: none;
   }
+  caption {
+    /* we're removing the horizontal padding (116px*2 = 232px) */
+    max-width: calc(100vw - 232px)
+  }
 }
 @media screen and (max-width: 799px) {
   article {
     padding: 57px 58px 39px 58px;
   }
+  caption {
+    /* we're removing the horizontal padding (58px*2 = 116px) */
+    max-width: calc(100vw - 116px)
+  }
 }
 @media screen and (max-width: 399px) {
   article {
     padding: 28px 29px 19px 29px;
+  }
+  caption {
+    /* we're removing the horizontal padding (29px*2 = 58px) */
+    max-width: calc(100vw - 58px)
   }
   footer {
     font-size: 10px;
