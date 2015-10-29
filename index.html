@@ -15,12 +15,6 @@
     </header>
     <article id="what" typeof="schema:ScholarlyArticle">
       <h1>What is Scholarly HTML?</h1>
-      <!--
-        XXX
-          - favicon
-          - script that adds sectionals
-          - highlight on targets for citations
-      -->
       <section typeof="sa:Abstract" id="abstract">
         <h2>Abstract</h2>
         <p>
@@ -90,7 +84,11 @@
         <p>
           Additionally, in view of the specific problem we addressed, in the creation of this
           vernacular we have favoured the reliability of interchange over ease of authoring; but
-          have nevertheless attempted to cater to the latter as much as possible.
+          have nevertheless attempted to cater to the latter as much as possible. A decent
+          boilerplate template file can certainly make authoring relatively simple, but not as
+          radically simple as it can be. For such use cases, Scholarly HTML provides a great output
+          target and overview of the data model required to support scholarly publishing at the
+          document level.
         </p>
       </section>
       <section typeof="sa:Results" id="definition">
@@ -287,14 +285,37 @@
             descendant with the TeX equivalent of the formula.
           </p>
           <p>
-            If <code>figure</code> has <code>typeof="sa:XXXX"</code> (see the
-            <a href="https://github.com/scienceai/scholarly.vernacular.io/issues/3">relevant
-            issue</a>) then it is a code container. It must contain a <code>pre</code> element
+            If <code>figure</code> has <code>typeof="schema:SoftwareSourceCode"</code>
+            then it is a code container. It must contain a <code>pre</code> element
             and optionally a <code>figcaption</code>. The <code>pre</code> element must contain as
-            its only child a <code>code</code> element. The <code>code</code> element should
-            contain a description of the type of code that it contains (see the previously mentioned
-            issue for discussion of how).
+            its only child a <code>code</code> element.
           </p>
+          <p>
+            If you wish to specify the type of the language used in the code, the
+            <code>figure</code> needs to have a <code>schema:programmingLanguage</code> property
+            containing a type <code>schema:Language</code>, itself with a <code>schema:name</code>
+            containing the the lowercase name of one of the languages from the
+            <a
+            href="https://github.com/scienceai/list-of-programming-languages/blob/master/data/data.jsonld">list
+            of programming languages</a>. Canonically, this would look like the following source:
+          </p>
+          <figure typeof="schema:SoftwareSourceCode">
+            <meta property="schema:name" content="html">
+            <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-html">
+&lt;figure typeof="schema:SoftwareSourceCode">
+  &lt;pre property="schema:programmingLanguage" typeof="schema:Language">
+    &lt;meta property="schema:name" content="python">
+    &lt;code>import foo&lt;/code>
+  &lt;/pre>
+  &lt;figcaption>
+    How to import foo.
+  &lt;/figcaption>
+&lt;/figure>
+            </code></pre>
+            <figcaption>
+              An example of HTML capturing some complex Python code
+            </figcaption>
+          </figure>
         </section>
         <section id="inline-elements">
           <h3>Inline Elements</h3>
