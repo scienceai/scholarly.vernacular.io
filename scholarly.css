@@ -211,6 +211,76 @@ caption {
   max-width: calc(100vw - 228px)
 }
 
+/*
+  The first section is always the users
+*/
+article > section:first-of-type {
+  margin-top: 30px;
+}
+/* the authors' list */
+article > section:first-of-type ol::before {
+  display: block;
+  float: left;
+  width: 150px;
+  margin-left: -150px;
+  font-variant: small-caps;
+  color: #9E9E9E;
+}
+article > section:first-of-type ol:first-of-type::before {
+  content: 'Authors';
+}
+article > section:first-of-type ol:not(:first-of-type)::before {
+  content: 'Affiliations';
+}
+article > section:first-of-type ol {
+  list-style-type: none;
+  margin-left: 150px;
+  counter-reset: affiliations;
+}
+article > section:first-of-type ol:not(:first-of-type) li::before {
+  counter-increment: affiliations;
+  content: counter(affiliations, lower-latin) '.';
+  font-size: 12px;
+  display: inline;
+}
+article > section:first-of-type li {
+  display: inline;
+}
+article > section:first-of-type li::after {
+  content: ',';
+}
+article > section:first-of-type li:last-child::after {
+  content: normal;
+}
+article > section:first-of-type a[property="schema:affiliation"] {
+  font-size: 12px;
+  vertical-align: super;
+}
+article > section:first-of-type sup[property="schema:accountablePerson"] {
+  font-size: 0;
+}
+article > section:first-of-type sup[property="schema:accountablePerson"]::after {
+  content: '⁎';
+  font-size: 18px;
+  vertical-align: 7px;
+}
+
+/* have less vertical space in structured abstracts */
+section[typeof='sa:Abstract'] > section {
+  margin: 0;
+}
+section[typeof='sa:Abstract'] > section > h3 {
+  display: inline;
+  font-variant: small-caps;
+  float: left;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 16px 8px 0 0;
+  color: var(--color_grey_500)
+}
+
+
 /* this is for a bug in PrismJS 1.3.0 that renders code as pre */
 :not(pre) > code[class*='language-'] {
   white-space: normal;
