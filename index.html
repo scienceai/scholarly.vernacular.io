@@ -208,6 +208,18 @@
             needed for stylistic reasons.
           </p>
           <p>
+            The <code>article</code> element should have a <code>resource</code> attribute, usually
+            with a value of <code>#</code>. The reason for that is to grant it a URL that can be
+            targeted by other properties, for instance the <code>schema:accountablePerson</code>
+            used in the <a href="#authors">Authors &amp; Affiliations</a> section. The
+            <code>resource</code> attribute can take any value, but it must then be matched by the
+            <code>about</code> attributes of the properties targeting it. If <code>resource</code>
+            is omitted, the only way in which those properties can target it is by knowing the URL
+            from which the document was retrieved (or those properties can be skipped, at this
+            moment <code>schema:accountablePerson</code> is the only usage of this pattern; it
+            is needed to set the corresponding author).
+          </p>
+          <p>
             The first element child of the <code>article</code> element must be an <code>h1</code>
             heading that serves as the primary title for the document. It may itself contain markup.
             The white-space-normalised text value of the <code>h1</code> must appear as a substring
@@ -533,13 +545,58 @@
             acceptable element, really) with <code>property="schema:name"</code>, containing the
             name.
           </p>
-          <!--
-            XXX
-            article must have @resource
-          -->
         </section>
         <section id="funding">
           <h3>The Funding Section</h3>
+          <p>
+            The funding information attached to an article involves a list of sponsors each of which
+            offers a list of grants. Again, an example probably makes the idea clearer:
+          </p>
+          <figure typeof="schema:SoftwareSourceCode">
+            <meta property="schema:name" content="html">
+            <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-html">
+&lt;section typeof="sa:Funding">
+  &lt;h2>Funding&lt;/h2>
+  &lt;p rel="schema:sponsor">
+    This work was sponsored by the
+    &lt;a href="http://pixar.wikia.com/wiki/CDA" typeof="schema:Organization">
+      &lt;span property="schema:name">Child Detection Agency&lt;/span>
+      (&lt;span property="schema:alternateName">CDA&lt;/span>)
+    &lt;/a> under the grant
+    &lt;span about="http://pixar.wikia.com/wiki/CDA" property="schema:makesOffer"
+             resource="http://pixar.wikia.com/wiki/CDA#grantId" typeof="schema:Offer">
+      &lt;a href="http://pixar.wikia.com/wiki/CDA#grantId">
+        &lt;span property="schema:serialNumber">grantId&lt;/span>
+      &lt;/a>
+    &lt;/span>
+  &lt;/p>
+&lt;/section>
+            </code></pre>
+            <figcaption>
+              The markup for a complete funding section.
+            </figcaption>
+          </figure>
+          <p>
+            The section has <code>typeof="sa:Funding"</code> and an arbitrary heading title, like
+            other sections.
+          </p>
+          <p>
+            It contains a series of <a href="#hunk-elements">hunks</a> that are
+            <code>rel="schema:sponsor"</code> (there can also be other content, it is ignored for
+            our purposes). The example above uses a <code>p</code> and a narrative style for its
+            content, but you have freedom to use other encodings.
+          </p>
+          <p>
+            The funder will be <code>typeof="schema:Organization"</code> (or a subtype thereof),
+            will be identified through its URL (as in the <code>a</code> above), and will typically
+            have <code>schema:name</code> and often <code>schema:alternateName</code>.
+          </p>
+          <p>
+            The specific grant is of type <code>schema:Offer</code>, as the object of a
+            <code>schema:makesOffer</code> property on the <code>schema:Organization</code>. It
+            should have a URL identifying it and a <code>schema:serialNumber</code> that is its
+            labeled identity.
+          </p>
         </section>
       </section>
       <section typeof="sa:Conclusion" id="conclusion">
