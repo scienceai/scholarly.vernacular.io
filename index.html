@@ -125,6 +125,12 @@
           processors wishing to produce or consume scholarly articles. These rules are outlined in
           the following sections.
         </p>
+        <p>
+          Please note that in its current state this specification is often informal in the manner
+          in which it describes its constraints. This is to facilitate review by people unfamiliar
+          with formal specification writing. As the format solidifies, it will be made more formal
+          progressively (but attempt to remain readable).
+        </p>
         <section id="file-headers">
           <h3>File &amp; Supporting Structure</h3>
           <p>
@@ -219,6 +225,11 @@
             ignored.
           </p>
           <p>
+            The first <code>section</code> child element of the <code>article</code> must be the
+            <a href="#authors">Authors and Affiliations</a> section. It has no <code>typeof</code>
+            and its specific rules are outlined in its own chapter below.
+          </p>
+          <p>
             The <code>section</code> elements can be nested arbitrarily deep. Each
             <code>section</code> element must have as its first element child an <code>hX</code>
             heading element the numeric part of which must be the number of <code>section</code>
@@ -240,6 +251,8 @@
             <code>typeof</code> values are currently understood:
           </p>
           <ul>
+            <li><code>sa:Funding</code> (which has its <a href="#funding">specific structure</a>)</li>
+            <li><code>sa:Abstract</code></li>
             <li><code>sa:Abstract</code></li>
             <li><code>sa:MaterialsAndMethods</code></li>
             <li><code>sa:Results</code></li>
@@ -418,6 +431,115 @@
             <a href="https://github.com/scienceai/scholarly.vernacular.io/issues/4">#4</a>). The
             references section of this document is an example.
           </p>
+        </section>
+        <section id="authors">
+          <h3>The Authors &amp; Affiliations Section</h3>
+          <p>
+            Capturing authors, the affiliations and their relationship to the article is the most
+            intricate part of Scholarly HTML. Care was taken to avoid repetition and to keep the
+            markup density as reasonable as possible, but the data to content ratio remains
+            relatively high.
+          </p>
+          <p>
+            It is probably best to start from an example and then to explain it:
+          </p>
+          <figure typeof="schema:SoftwareSourceCode">
+            <meta property="schema:name" content="html">
+            <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-html">
+&lt;article resource="#">
+…
+  &lt;section>
+    &lt;ol>
+      &lt;li property="schema:author" resource="http://berjon.com/" typeof="schema:Person">
+        &lt;a property="schema:email" href="mailto:robin@berjon.com">
+          &lt;span property="schema:givenName">Robin&lt;/span>
+          &lt;span property="schema:familyName">Berjon&lt;/span>
+        &lt;/a>
+        &lt;a href="#scienceai" resource="http://science.ai/" property="schema:affiliation">a&lt;/a>
+        &lt;sup about="#" property="schema:accountablePerson"
+             resource="http://berjon.com/">corresponding author&lt;/sup>&lt;/li>
+      &lt;li property="schema:contributor" resource="https://github.com/sballesteros"
+             typeof="schema:Person">
+        &lt;a property="schema:email" href="mailto:sebastien@standardanalytics.io">
+          &lt;span property="schema:givenName">Sébastien&lt;/span>
+          &lt;span property="schema:familyName">Ballesteros&lt;/span>
+        &lt;/a>
+        &lt;a href="#scienceai" resource="http://science.ai/"
+              property="schema:affiliation">a&lt;/a>&lt;/li>
+    &lt;/ol>
+    &lt;ol>
+      &lt;li id="scienceai">
+        &lt;a href="http://science.ai/" typeof="schema:Corporation">
+          &lt;span property="schema:name">science.ai&lt;/span>
+        &lt;/a>
+      &lt;/li>
+    &lt;/ol>
+  &lt;/section>
+&lt;/article>
+            </code></pre>
+            <figcaption>
+              The authors and affiliations section for this document.
+            </figcaption>
+          </figure>
+          <p>
+            The markup is relatively convoluted, but the data model is rich:
+          </p>
+          <figure typeof="sa:Image">
+            <img src="data-model.png" width="885" height="368">
+            <figcaption>
+              The data model that matches the code
+            </figcaption>
+          </figure>
+          <p>
+            This <code>section</code> has no <code>typeof</code> and no heading element. It contains
+            a first <code>ol</code> which lists authors, and optionally a second <code>ol</code>
+            to list affiliations.
+          </p>
+          <p>
+            Each <code>li</code> in the authors <code>ol</code> has
+            <code>property="schema:author"</code> or <code>property="schema:contributor"</code>,
+            <code>typeof="schema:Person"</code>, and a <code>resource</code> attibute that is a URL
+            identifying the person (typically their home page, or possibly email address — it could
+            also be a URL to their ORCID).
+          </p>
+          <p>
+            Inside of that <code>li</code> arbitrary properties of <code>schema:Person</code> can be
+            specified, but providing at least <code>schema:givenName</code> and
+            <code>schema:familyName</code>, as well as ideally <code>schema:email</code> is very
+            much recommended.
+          </p>
+          <p>
+            If there is an affiliations <code>ol</code> and a given author is affiliated, there must
+            be an <code>a</code> element with its <code>href</code> pointing to that affiliation, a
+            <code>resource</code> matching the URL identifying the affiliation, and
+            <code>property="schema:affiliation"</code>. The content of that <code>a</code> element
+            must be a string that matches the one that will be generated by CSS to label the
+            affiliation; Latin lowercase being recommended. (This is a hack, but we can only do so
+            much within the limits of CSS — better <code>counter</code> would be needed.)
+          </p>
+          <p>
+            If a given author is the corresponding author, a last <code>sup</code> element needs to
+            be added to its <code>li</code> with <code>property="schema:accountablePerson"</code>,
+            <code>about="#"</code> (which has <code>schema:accountablePerson</code> point to the
+            <code>article</code>), and a <code>resource</code> matching that on the parent
+            <code>li</code>.
+          </p>
+          <p>
+            If there is an affiliations <code>ol</code>, each <code>li</code> in it must have an
+            <code>id</code> which the authors link to. In turn it contains an <code>a</code>
+            element linking to the affiliation with <code>typeof</code> set to either
+            <code>schema:Organization</code> or <a href="http://schema.org/Organization">and of its
+            subtypes</a>. Inside the <code>a</code> needs to sit a <code>span</code> (or any
+            acceptable element, really) with <code>property="schema:name"</code>, containing the
+            name.
+          </p>
+          <!--
+            XXX
+            article must have @resource
+          -->
+        </section>
+        <section id="funding">
+          <h3>The Funding Section</h3>
         </section>
       </section>
       <section typeof="sa:Conclusion" id="conclusion">

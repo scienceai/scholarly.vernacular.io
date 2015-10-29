@@ -211,6 +211,28 @@ caption {
   max-width: calc(100vw - 228px)
 }
 
+figure {
+  text-align: center;
+  box-sizing: border-box;
+  margin: 24px 0px;
+  padding-top: 32px;
+}
+figcaption {
+  text-align: left;
+  font: normal normal 300 13px/18px;
+  color: #9E9E9E;
+  margin: 24px 0px 32px 0px;
+  padding: 0 0px 24px 0;
+  letter-spacing: .35px;
+  border-bottom: 1px solid #eee;
+  font-style: italic;
+  hyphens: auto;
+}
+figure[typeof="sa:Image"] {
+  border-top: 1px solid #eee;
+}
+
+
 /*
   The first section is always the users
 */
@@ -358,6 +380,9 @@ section[typeof='sa:Abstract'] > section > h3 {
     color: inherit;
   }
   pre {
+    background: transparent;
+  }
+  figure {
     background: transparent;
   }
 }
