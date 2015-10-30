@@ -106,12 +106,6 @@ article img {
   height: auto;
 }
 
-pre {
-  box-sizing: border-box;
-  border-left: 3px double var(--color_grey_500);
-  padding-left: 16px;
-  background: var(--color_hl02_a-yellow);
-}
 pre, code, a[property="schema:citation"] {
   -moz-hyphens: none;
   hyphens: none;
@@ -299,7 +293,12 @@ section[typeof='sa:Abstract'] > section > h3 {
   line-height: inherit;
   margin: 0;
   padding: 16px 8px 0 0;
-  color: var(--color_grey_500)
+  color: #9E9E9E
+}
+
+aside[typeof="schema:WPSideBar"] {
+  font-style: italic;
+  background: #F0F6FA;
 }
 
 

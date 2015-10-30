@@ -52,6 +52,17 @@
       </section>
       <section typeof="sa:MaterialsAndMethods" id="motivation">
         <h2>Motivation</h2>
+        <aside typeof="schema:WPSideBar">
+          <p>
+            This document is an early-stage release. While the underlying format is relatively
+            mature and actually implemented, details are still in flux and the format can still be
+            changed. The quality of this document is also being gradually improved. If you’re
+            interested in this project, come join
+            <a href="https://github.com/scienceai/scholarly.vernacular.io/">the party on GitHub</a>
+            or talk to either <a href="https://twitter.com/sciencedotai">@sciencedotai</a> or
+            <a href="https://twitter.com/robinberjon">@robinberjon</a> in Twitter.
+          </p>
+        </aside>
         <p>
           Scholarly articles are still primarily encoded as unstructured graphics formats in which
           most of the information initially created by research, or even just in the text, is lost.
@@ -121,6 +132,23 @@
           output is the <a href="http://scienceai.github.io/docx-standard-scientific-style">DOCX
           Standard Scientific Style</a> which enables authors who are comfortable with Microsoft
           Word to author documents that have a direct upgrade path to semantic, standard content.
+        </p>
+        <p>
+          Where semantic modelling is concerned, our approach is to stick as much as possible to
+          <a href="http://schema.org/">schema.org</a>. Beyond the obvious advantages there are in
+          reusing a vocabulary that is supported by all the major search engines and is actively
+          being developed towards enabling a shared understanding of many useful concepts, it also
+          provides a protection against «<em>ontological drift</em>» whereby a new vocabulary is
+          defined by a small group with insufficient input from a broader community of practice.
+          A language that solely a single participant understands is of limited value.
+        </p>
+        <p>
+          In a small, circumscribed number of cases we have had to depart from
+          <a href="http://schema.org">schema.org</a>, using the <code>https://ns.science.ai/</code>
+          (prefixed with <code>sa:</code>) vocabulary instead
+          (<a href="#ref-sa-ontology" property="schema:citation">Science.AI, 2015a</a>). Our goal is
+          to work with <a href="http://schema.org">schema.org</a> in order to extend their
+          vocabulary, and we will align our usage with the outcome of these discussions.
         </p>
       </section>
       <section typeof="sa:Results" id="definition">
@@ -270,7 +298,6 @@
           </p>
           <ul>
             <li><code>sa:Funding</code> (which has its <a href="#funding">specific structure</a>)</li>
-            <li><code>sa:Abstract</code></li>
             <li><code>sa:Abstract</code></li>
             <li><code>sa:MaterialsAndMethods</code></li>
             <li><code>sa:Results</code></li>
