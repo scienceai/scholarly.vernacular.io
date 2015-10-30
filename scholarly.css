@@ -356,6 +356,18 @@ section[typeof='sa:Abstract'] > section > h3 {
   footer {
     font-size: 10px;
   }
+  article > section:first-of-type ol::before {
+    float: none;
+    width: auto;
+    margin-left: 0;
+  }
+  article > section:first-of-type ol {
+    margin-left: 0;
+    padding: 0;
+  }
+  section[typeof="sa:Abstract"] {
+    margin-top: 30px;
+  }
 }
 
 @media print {
