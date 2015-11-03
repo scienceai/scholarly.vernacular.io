@@ -13,7 +13,7 @@
       <p class="title">Scholarly HTML</p>
       <p class="subtitle">Markedly Smart</p>
     </header>
-    <article id="what" typeof="schema:ScholarlyArticle" resource="http://scholarly.vernacular.io/">
+    <article id="what" typeof="schema:ScholarlyArticle" resource="#">
       <h1>What is Scholarly HTML?</h1>
       <section>
         <ol>
@@ -22,15 +22,24 @@
               <span property="schema:givenName">Robin</span>
               <span property="schema:familyName">Berjon</span>
             </a>
-            <a href="#scienceai" resource="http://science.ai/" property="schema:affiliation">a</a>
-            <sup about="http://scholarly.vernacular.io/" property="schema:accountablePerson"
-                 resource="http://berjon.com/">corresponding author</sup></li>
+            <a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
+              <span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a</span>
+              <meta property="schema:startDate" content="2015-01-22"/>
+            </a>
+            <sup about="#" property="schema:accountablePerson" resource="http://berjon.com/">
+              corresponding author
+            </sup>
+          </li>
           <li property="schema:contributor" resource="https://github.com/sballesteros" typeof="schema:Person">
             <a property="schema:email" href="mailto:sebastien@standardanalytics.io">
               <span property="schema:givenName">Sébastien</span>
               <span property="schema:familyName">Ballesteros</span>
             </a>
-            <a href="#scienceai" resource="http://science.ai/" property="schema:affiliation">a</a></li>
+            <a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
+              <span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a</span>
+              <meta property="schema:startDate" content="2015-01-22"/>
+            </a>
+          </li>
         </ol>
         <ol>
           <li id="scienceai">
@@ -475,7 +484,6 @@
             references section of this document is an example.
           </p>
 
-
           <figure typeof="schema:SoftwareSourceCode">
             <meta property="schema:name" content="html">
             <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-html">
@@ -565,18 +573,24 @@
           &lt;span property="schema:givenName">Robin&lt;/span>
           &lt;span property="schema:familyName">Berjon&lt;/span>
         &lt;/a>
-        &lt;a href="#scienceai" resource="http://science.ai/"
-              property="schema:affiliation">a&lt;/a>
-        &lt;sup about="#" property="schema:accountablePerson"
-             resource="http://berjon.com/">corresponding author&lt;/sup>&lt;/li>
-      &lt;li property="schema:contributor" resource="https://github.com/sballesteros"
-             typeof="schema:Person">
+        &lt;a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
+          &lt;span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a&lt;/span>
+          &lt;meta property="schema:startDate" content="2015-01-22"/>
+        &lt;/a>
+        &lt;sup about="#" property="schema:accountablePerson" resource="http://berjon.com/">
+          corresponding author
+        &lt;/sup>
+      &lt;/li>
+      &lt;li property="schema:contributor" resource="https://github.com/sballesteros" typeof="schema:Person">
         &lt;a property="schema:email" href="mailto:sebastien@standardanalytics.io">
           &lt;span property="schema:givenName">Sébastien&lt;/span>
           &lt;span property="schema:familyName">Ballesteros&lt;/span>
         &lt;/a>
-        &lt;a href="#scienceai" resource="http://science.ai/"
-              property="schema:affiliation">a&lt;/a>&lt;/li>
+        &lt;a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
+          &lt;span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a&lt;/span>
+          &lt;meta property="schema:startDate" content="2015-01-22"/>
+        &lt;/a>
+      &lt;/li>
     &lt;/ol>
     &lt;ol>
       &lt;li id="scienceai">
