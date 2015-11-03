@@ -442,10 +442,13 @@
           </ul>
           <p>
             If an <code>a</code> element is linking to a citation, then it must have
-            <code>property="schema:citation"</code>; if it is linking to a figure it must have
-            <code>property="schema:hasPart"</code>. These are known as <dfn>flavoured links</dfn>,
-            they can be used to enhance the user experience by treating their behaviour differently
-            from regular links.
+            <code>property="schema:citation"</code>; if it is linking
+            to a figure or another creative work, it must
+            have <code>property="schema:hasPart"</code>
+            or <code>property="schema:isBasedOnUrl"</code>. These are
+            known as <dfn>flavoured links</dfn>, they can be used to
+            enhance the user experience by treating their behaviour
+            differently from regular links.
           </p>
         </section>
         <section id="references-section">
@@ -698,6 +701,233 @@
             should have a URL identifying it and a <code>schema:serialNumber</code> that is its
             labeled identity.
           </p>
+        </section>
+        <section>
+          <h3>Data rich scholarly articles</h3>
+          <p>
+            Scholarly Articles are often part of a larger network of
+            creative works containing dataset, code, additional
+            figures, tables or media (audio, video). Even within a
+            scholarly article, some creative work can be encoded in
+            different way (for instance, figures typically comes in
+            different resolutions). Scholarly HTML aims to formally
+            describe (and help archive) this larger context.
+          </p>
+          <p>
+            Further data about a scholarly graph can be exposed within
+            the article in RDFa or as
+            <a href="http://json-ld.org">JSON-LD</a> islands. When
+            JSON-LD is used, it is recommended not to duplicated the
+            data already serialized in RDFa. JSON-LD should be
+            reserved to expose data not directly present in the HTML
+            markup.
+          </p>
+          <figure>
+            <pre><code class="language-jsonld">
+{
+  "@context": "http://schema.org",
+  "@id": "http://example.com/graph",
+  "@graph": [
+    {
+      "@id": "http://example.com/article",
+      "@type": "ScholarlyArticle",
+      "isPartOf": "http://example.com/graph",
+      "isBasedOnUrl": ["http://example.com/code"],
+      "hasPart": {
+        "@id": "http://example.com/image",
+        "@type": "Image",
+        "encoding": [
+          {
+            "@id": "http://example.com/encodingsmall",
+            "@type": "ImageObject",
+            "contentUrl": "http://example.com/small"
+            "height": "400px",
+            "width": "400px",
+            "isBasedOnUrl": ["http://example.com/encodinglarge"]
+          },
+          {
+            "@id": "http://example.com/encodinglarge",
+            "@type": "ImageObject",
+            "contentUrl": "http://example.com/large",
+            "height": "1200px",
+            "width": "1200px"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "http://example.com/code",
+      "@type": "SoftwareSourceCode",
+      "codeRepository": "http://example.com/repository",
+      "isPartOf": "http://example.com/graph"
+    }
+  ]
+}
+            </code></pre>
+            <figcaption>
+              <p>
+                A scholarly graph, detailing the context of a
+                scholarly article in JSON-LD. Here, the scholarly
+                article contains a figure available in 2 sizes and is
+                based on software source code available in a code
+                repository. The <code>schemaIsBasedOnUrl</code>
+                property also indicates that the small image was
+                derived from the large one.
+              </p>
+              <aside typeof="schema:WPSideBar">
+                To maintain good compatibility with schema.org, each
+                creative work of the graph marked as being part of the
+                graph with <code>schema:isPartOf</code>.
+              </aside>
+            </figcaption>
+          </figure>
+          <p>
+            A scholarly graph provides a manifest for a scholarly
+            article listing all the creative works, their encodings
+            and the relationship between these objects (expressed
+            with <code>schema:hasPart</code>
+            and <code>schema:isBasedOnUrl</code>).
+          </p>
+          <table>
+            <caption>
+              Subclass of <code>schema:CreativeWork</code> commonly
+              associated with a Scholarly Article.
+            </caption>
+            <thead>
+              <tr>
+                <td>Creative Work</td>
+                <td>Property</td>
+                <td>Encoding</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>schema:ScholarlyArticle</code></td>
+                <td><code>schema:encoding</code></td>
+                <td><code>sa:DocumentObject</code></td>
+              </tr>
+              <tr>
+                <td><code>sa:Image</code></td>
+                <td><code>schema:encoding</code></td>
+                <td><code>schema:ImageObject</code></td>
+              </tr>
+              <tr>
+                <td><code>sa:Audio</code></td>
+                <td><code>schema:encoding</code></td>
+                <td><code>schema:AudioObject</code></td>
+              </tr>
+              <tr>
+                <td><code>sa:Video</code></td>
+                <td><code>schema:encoding</code></td>
+                <td><code>schema:VideoObject</code></td>
+              </tr>
+              <tr>
+                <td><code>schema:Dataset</code></td>
+                <td><code>schema:distribution</code></td>
+                <td><code>schema:DataDownload</code></td>
+              </tr>
+              <tr>
+                <td><code>schema:Table</code></td>
+                <td><code>schema:encoding</code></td>
+                <td><code>sa:TableObject</code></td>
+              </tr>
+              <tr>
+                <td><code>schema:SoftwareSourceCode</code></td>
+                <td><code>schema:encoding</code></td>
+                <td><code>schema:MediaObject</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h3>Semantic context of a scholarly article</h3>
+          <p>
+            Scholarly Articles (and their associated resources) are
+            frequently tagged to improve their discoverability. For
+            instance
+            the <a href="https://en.wikipedia.org/wiki/United_States_National_Library_of_Medicine">National
+            Library of Medicine</a> uses
+            the <a href="https://en.wikipedia.org/wiki/Medical_Subject_Headings">Medical
+            Subject Headings</a> (MeSH) controlled vocabulary to index
+            journal articles in the life sciences. Scholarly HTML
+            leverages schema.org and the <code>schema:about</code>
+            property to efficiently expose this information to search
+            engines. When possible,
+            schema.org <a href="http://schema.org/MedicalEntity">MedicalEntity</a>
+            (and subclasses) should be used to describe biomedical
+            concepts.
+          </p>
+          <figure>
+            <pre><code class="language-jsonld">
+{
+  "@context": "http://schema.org",
+  "@id": "http://example.com/article",
+  "@type": "ScholarlyArticle",
+  "about": {
+    "@id": "http://id.nlm.nih.gov/mesh/D016133",
+    "@type": "MedicalEntity",
+    "name": "Polymerase Chain Reaction",
+    "description": "In vitro method for producing large amounts of specific DNA or RNA fragments of defined length and sequence from small amounts of short oligonucleotide flanking sequences (primers). The essential steps include thermal denaturation of the double-stranded target molecules, annealing of the primers to their complementary sequences, and extension of the annealed primers by enzymatic synthesis with DNA polymerase. The reaction is efficient, specific, and extremely sensitive. Uses for the reaction include disease diagnosis, detection of difficult-to-isolate pathogens, mutation analysis, genetic testing, DNA sequencing, and analyzing evolutionary relationships.",
+    "code": {
+      "@type": "MedicalCode",
+      "codeValue": "D016133",
+      "codingSystem": "MeSH"
+    },
+    "mainEntityOfPage": {
+      "@id": "#Discussion",
+    }
+  }
+}
+            </pre></code>
+            <figcaption>
+              Leveraging the <code>schema:about</code> property to
+              expose concepts about a scholarly article. Note that
+              the <code>schema:mainEntityOfPage</code> property is
+              used to specify the part of the article where the
+              concept is relevant.
+            </figcaption>
+          </figure>
+        </section>
+        <section>
+          <h3>Hypermedia controls</h3>
+          <p>
+            A Scholarly Article (or any resource part of the Scholarly
+            graph) can be made actionable with the addition of
+            hypermedia controls provided
+            through <a href="http://schema.org/Action">schema.org
+            actions</a>. Readers not familiar with schema.org Actions
+            should refer to
+            the <a href="http://schema.org/docs/actions.html">actions
+            overview document</a> for a quick introduction.
+          </p>
+          <figure>
+            <pre><code class="language-jsonld">
+{
+  "@context": "http://schema.org",
+  "@id": "http://example.com/article",
+  "@type": "ScholarlyArticle",
+  "potentialAction": {
+    "@type": "ReviewAction",
+    "agent-input": {
+      "@type": "PropertyValueSpecification",
+      "valueRequired": true
+    },
+    "resultReview-input": {
+      "@type": "PropertyValueSpecification",
+      "valueRequired": true
+    },
+    "target": {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "http://example.com/review"
+    }
+  }
+}
+            </pre></code>
+            <figcaption>
+              Hypermedia controls indicating how to submit a review
+              about the scholarly article.
+            </figcaption>
         </section>
       </section>
       <section typeof="sa:Conclusion" id="conclusion">
