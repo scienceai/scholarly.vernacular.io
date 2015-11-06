@@ -117,7 +117,9 @@ code:not([class]) {
   padding: 0.2em;
   background: #FDFDFD;
 }
-
+article pre[class*="language-"] {
+  max-height: 100%;
+}
 footer {
   font-size: 13px;
   box-shadow: -1px 0px 2px #BCBCBC;
@@ -268,17 +270,9 @@ article > section:first-of-type li::after {
 article > section:first-of-type li:last-child::after {
   content: normal;
 }
-article > section:first-of-type a[property="schema:affiliation"] {
+article > section:first-of-type a[property="sa:roleAffiliation"] {
   font-size: 12px;
   vertical-align: super;
-}
-article > section:first-of-type sup[property="schema:accountablePerson"] {
-  font-size: 0;
-}
-article > section:first-of-type sup[property="schema:accountablePerson"]::after {
-  content: '⁎';
-  font-size: 18px;
-  vertical-align: 7px;
 }
 
 /* have less vertical space in structured abstracts */
