@@ -17,28 +17,22 @@
       <h1>What is Scholarly HTML?</h1>
       <section>
         <ol>
-          <li property="schema:author" resource="http://berjon.com/" typeof="schema:Person">
-            <a property="schema:email" href="mailto:robin@berjon.com">
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author" href="http://berjon.com/" typeof="schema:Person">
               <span property="schema:givenName">Robin</span>
               <span property="schema:familyName">Berjon</span>
             </a>
-            <a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
-              <span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a</span>
-              <meta property="schema:startDate" content="2015-01-22"/>
-            </a>
-            <sup about="#" property="schema:accountablePerson" resource="http://berjon.com/">
-              corresponding author
+            <a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/">a</a>
+            <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+              <a property="schema:email" href="mailto:robin@berjon.com" title="corresponding author">&#9993;</a>
             </sup>
           </li>
-          <li property="schema:contributor" resource="https://github.com/sballesteros" typeof="schema:Person">
-            <a property="schema:email" href="mailto:sebastien@standardanalytics.io">
-              <span property="schema:givenName">Sébastien</span>
+          <li property="schema:contributor" typeof="sa:ContributorRole">
+            <a property="schema:contributor" href="https://github.com/sballesteros" typeof="schema:Person">
+              <span property="schema:givenName">Sebastien</span>
               <span property="schema:familyName">Ballesteros</span>
             </a>
-            <a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
-              <span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a</span>
-              <meta property="schema:startDate" content="2015-01-22"/>
-            </a>
+            <a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/">a</a>
           </li>
         </ol>
         <ol>
@@ -251,16 +245,16 @@
             needed for stylistic reasons.
           </p>
           <p>
-            The <code>article</code> element should have a <code>resource</code> attribute, usually
-            with a value of <code>#</code>. The reason for that is to grant it a URL that can be
-            targeted by other properties, for instance the <code>schema:accountablePerson</code>
-            used in the <a href="#authors">Authors &amp; Affiliations</a> section. The
-            <code>resource</code> attribute can take any value, but it must then be matched by the
-            <code>about</code> attributes of the properties targeting it. If <code>resource</code>
-            is omitted, the only way in which those properties can target it is by knowing the URL
-            from which the document was retrieved (or those properties can be skipped, at this
-            moment <code>schema:accountablePerson</code> is the only usage of this pattern; it
-            is needed to set the corresponding author).
+            The <code>article</code> element should have
+            a <code>resource</code> attribute, usually with a value
+            of <code>#</code>. The reason for that is to grant it a
+            URL that can be targeted by other properties. The
+            <code>resource</code> attribute can take any value, but it
+            must then be matched by the
+            <code>about</code> attributes of the properties targeting
+            it. If <code>resource</code> is omitted, the only way in
+            which those properties can target it is by knowing the URL
+            from which the document was retrieved.
           </p>
           <p>
             The first element child of the <code>article</code> element must be an <code>h1</code>
@@ -561,46 +555,40 @@
           <p>
             It is probably best to start from an example and then to explain it:
           </p>
+
           <figure typeof="schema:SoftwareSourceCode">
             <meta property="schema:name" content="html">
             <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-html">
-&lt;article resource="#">
-…
-  &lt;section>
-    &lt;ol>
-      &lt;li property="schema:author" resource="http://berjon.com/" typeof="schema:Person">
-        &lt;a property="schema:email" href="mailto:robin@berjon.com">
-          &lt;span property="schema:givenName">Robin&lt;/span>
-          &lt;span property="schema:familyName">Berjon&lt;/span>
-        &lt;/a>
-        &lt;a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
-          &lt;span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a&lt;/span>
-          &lt;meta property="schema:startDate" content="2015-01-22"/>
-        &lt;/a>
-        &lt;sup about="#" property="schema:accountablePerson" resource="http://berjon.com/">
-          corresponding author
-        &lt;/sup>
-      &lt;/li>
-      &lt;li property="schema:contributor" resource="https://github.com/sballesteros" typeof="schema:Person">
-        &lt;a property="schema:email" href="mailto:sebastien@standardanalytics.io">
-          &lt;span property="schema:givenName">Sébastien&lt;/span>
-          &lt;span property="schema:familyName">Ballesteros&lt;/span>
-        &lt;/a>
-        &lt;a href="#scienceai" property="schema:affiliation" typeof="schema:OrganizationRole">
-          &lt;span resource="http://science.ai/" property="schema:affiliation" typeof="schema:Corporation">a&lt;/span>
-          &lt;meta property="schema:startDate" content="2015-01-22"/>
-        &lt;/a>
-      &lt;/li>
-    &lt;/ol>
-    &lt;ol>
-      &lt;li id="scienceai">
-        &lt;a href="http://science.ai/" typeof="schema:Corporation">
-          &lt;span property="schema:name">science.ai&lt;/span>
-        &lt;/a>
-      &lt;/li>
-    &lt;/ol>
-  &lt;/section>
-&lt;/article>
+&lt;!-- The author and contributor list --&gt;
+&lt;ol resource="#"&gt;
+  &lt;!-- The first author, Robin Berjon --&gt;
+  &lt;li property="schema:author" typeof="sa:ContributorRole"&gt;
+    &lt;a property="schema:author" href="http://berjon.com/" typeof="schema:Person"&gt;
+      &lt;span property="schema:givenName"&gt;Robin&lt;/span&gt;
+      &lt;span property="schema:familyName"&gt;Berjon&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"&gt;a&lt;/a&gt;
+    &lt;sup property="sa:roleContactPoint" typeof="schema:ContactPoint"&gt;
+      &lt;a property="schema:email" href="mailto:robin@berjon.com" title="corresponding author"&gt;&#9993;&lt;/a&gt;
+    &lt;/sup&gt;
+  &lt;/li&gt;
+  &lt;!-- A contributor, Sebastien Ballesteros --&gt;
+  &lt;li property="schema:contributor" typeof="sa:ContributorRole"&gt;
+    &lt;a property="schema:contributor" href="https://github.com/sballesteros" typeof="schema:Person"&gt;
+      &lt;span property="schema:givenName"&gt;Sebastien&lt;/span&gt;
+      &lt;span property="schema:familyName"&gt;Ballesteros&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"&gt;a&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;!-- The affiliation list --&gt;
+&lt;ol&gt;
+  &lt;li id="scienceai"&gt;
+    &lt;a href="http://science.ai/" typeof="schema:Corporation"&gt;
+      &lt;span property="schema:name"&gt;science.ai&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
             </code></pre>
             <figcaption>
               The authors and affiliations section for this document.
@@ -610,57 +598,79 @@
             The markup is relatively convoluted, but the data model is rich:
           </p>
           <figure typeof="sa:Image">
-            <img src="data-model.png" width="885" height="368">
+            <img src="affiliations.png" width="976" height="452">
             <figcaption>
               The data model that matches the code
             </figcaption>
           </figure>
           <p>
-            This <code>section</code> has no <code>typeof</code> and no heading element. It contains
-            a first <code>ol</code> which lists authors, and optionally a second <code>ol</code>
-            to list affiliations.
+            This <code>section</code> has no <code>typeof</code> and
+            no heading element. It contains a first <code>ol</code>
+            which lists authors, and optionally a
+            second <code>ol</code> to list affiliations.
           </p>
           <p>
             Each <code>li</code> in the authors <code>ol</code> has
-            <code>property="schema:author"</code> or <code>property="schema:contributor"</code>,
-            <code>typeof="schema:Person"</code>, and a <code>resource</code> attibute that is a URL
-            identifying the person (typically their home page, or possibly email address — it could
-            also be a URL to their ORCID).
+            <code>property="schema:author"</code> or <code>property="schema:contributor"</code> and a
+            <code>typeof="sa:ContributorRole"</code>.
           </p>
           <p>
-            Inside of that <code>li</code> arbitrary properties of <code>schema:Person</code> can be
-            specified, but providing at least <code>schema:givenName</code> and
-            <code>schema:familyName</code>, as well as ideally <code>schema:email</code> is very
-            much recommended.
+            A <code>sa:ContributorRole</code> type (following the
+            semantic of
+            schema.org <a href="http://schema.org/Role">Role</a>) is
+            used so that affiliations or contact informations (email
+            address, etc.) relevant to this specific scholarly article
+            (and this specific scholarly article only) can be
+            specified. This is important as authors may have different
+            affiliations and contact points at the time they are
+            publishing a scholarly article but may want to specify
+            only a subset of those. Readers not familiar with the
+            semantic of schema.org Role can consult
+            the <a href="http://blog.schema.org/2014/06/introducing-role.html">introductory
+            blog post</a>.
           </p>
           <p>
-            If there is an affiliations <code>ol</code> and a given author is affiliated, there must
-            be an <code>a</code> element with its <code>href</code> pointing to that affiliation, a
-            <code>resource</code> matching the URL identifying the affiliation, and
-            <code>property="schema:affiliation"</code>. The content of that <code>a</code> element
-            must be a string that matches the one that will be generated by CSS to label the
-            affiliation; Latin lowercase being recommended. (This is a hack, but we can only do so
-            much within the limits of CSS — better <code>counter</code> would be needed.)
+            Inside of that <code>li</code>, arbitrary properties
+            of <code>schema:Person</code>, filling
+            the <code>schema:author</code> property of
+            the <code>sa:ContributorRole</code> can be specified, but
+            providing at least <code>schema:givenName</code> and
+            <code>schema:familyName</code>. It is recommended that
+            these properties are wrapped into an hyperlink
+            identifying the person with a URL to their home page,
+            their <a href="http://orcid.org/">ORCID</a>, or an email
+            address.
           </p>
           <p>
-            If the time range of the affiliation needs to be specified
-            (contributors can be affiliated only temporary with an
-            institution), <code>schema:OrganizationRole</code> (or a
-            subclass) must be used. Readers not familiar with
-            the semantic of schema.org Role can consult the <a href="http://blog.schema.org/2014/06/introducing-role.html">introductory blog post</a>.
+            If there is an affiliations <code>ol</code> and a given
+            author is affiliated, there must be an <code>a</code>
+            element with its <code>href</code> pointing to that
+            affiliation, a <code>resource</code> matching the URL
+            identifying the affiliation,
+            and <code>property="schema:roleAffiliation"</code>. The
+            content of that <code>a</code> element must be a string
+            that matches the one that will be generated by CSS to
+            label the affiliation; Latin lowercase being
+            recommended. (This is a hack, but we can only do so much
+            within the limits of CSS — better <code>counter</code>
+            would be needed.)
           </p>
           <p>
-            If a given author is the corresponding author, a last <code>sup</code> element needs to
-            be added to its <code>li</code> with <code>property="schema:accountablePerson"</code>,
-            <code>about="#"</code> (which has <code>schema:accountablePerson</code> point to the
-            <code>article</code>), and a <code>resource</code> matching that on the parent
-            <code>li</code>.
+            If an author (or contributor) is a corresponding author, a
+            last <code>sup</code> element needs to be added to
+            its <code>li</code>
+            with <code>property="sa:roleContactPoint"</code>, <code>typeof="schema:ContactPoint"</code>
+            (or subclass). Inside the <code>sup</code> element, there
+            must be at least a link to the contributor email address
+            (<code>mailto:</code>). More contact information such a as
+            properties of <code>schema:PostalAddress</code> may be
+            added using <code>meta</code> tags.
           </p>
           <p>
             If there is an affiliations <code>ol</code>, each <code>li</code> in it must have an
             <code>id</code> which the authors link to. In turn it contains an <code>a</code>
             element linking to the affiliation with <code>typeof</code> set to either
-            <code>schema:Organization</code> or <a href="http://schema.org/Organization">and of its
+            <code>schema:Organization</code> or <a href="http://schema.org/Organization">one of its
             subtypes</a>. Inside the <code>a</code> needs to sit a <code>span</code> (or any
             acceptable element, really) with <code>property="schema:name"</code>, containing the
             name.
