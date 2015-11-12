@@ -565,35 +565,41 @@
             <meta property="schema:name" content="html">
             <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-html">
 &lt;!-- The author and contributor list --&gt;
-&lt;ol resource="#"&gt;
-  &lt;!-- The first author, Robin Berjon --&gt;
-  &lt;li property="schema:author" typeof="sa:ContributorRole"&gt;
-    &lt;a property="schema:author" href="http://berjon.com/" typeof="schema:Person"&gt;
-      &lt;span property="schema:givenName"&gt;Robin&lt;/span&gt;
-      &lt;span property="schema:familyName"&gt;Berjon&lt;/span&gt;
-    &lt;/a&gt;
-    &lt;a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"&gt;a&lt;/a&gt;
-    &lt;sup property="sa:roleContactPoint" typeof="schema:ContactPoint"&gt;
-      &lt;a property="schema:email" href="mailto:robin@berjon.com" title="corresponding author"&gt;&#9993;&lt;/a&gt;
-    &lt;/sup&gt;
-  &lt;/li&gt;
-  &lt;!-- A contributor, Sebastien Ballesteros --&gt;
-  &lt;li property="schema:contributor" typeof="sa:ContributorRole"&gt;
-    &lt;a property="schema:contributor" href="https://github.com/sballesteros" typeof="schema:Person"&gt;
-      &lt;span property="schema:givenName"&gt;Sebastien&lt;/span&gt;
-      &lt;span property="schema:familyName"&gt;Ballesteros&lt;/span&gt;
-    &lt;/a&gt;
-    &lt;a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"&gt;a&lt;/a&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;!-- The affiliation list --&gt;
-&lt;ol&gt;
-  &lt;li id="scienceai"&gt;
-    &lt;a href="http://science.ai/" typeof="schema:Corporation"&gt;
-      &lt;span property="schema:name"&gt;science.ai&lt;/span&gt;
-    &lt;/a&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;article resource="#"&gt;
+  …
+  &lt;section&gt;
+    &lt;ol&gt;
+      &lt;!-- The first author, Robin Berjon --&gt;
+      &lt;li property="schema:author" typeof="sa:ContributorRole"&gt;
+        &lt;a property="schema:author" href="http://berjon.com/" typeof="schema:Person"&gt;
+          &lt;span property="schema:givenName"&gt;Robin&lt;/span&gt;
+          &lt;span property="schema:familyName"&gt;Berjon&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"&gt;a&lt;/a&gt;
+        &lt;sup property="sa:roleContactPoint" typeof="schema:ContactPoint"&gt;
+          &lt;a property="schema:email" href="mailto:robin@berjon.com" title="corresponding author"&gt;&#9993;&lt;/a&gt;
+        &lt;/sup&gt;
+      &lt;/li&gt;
+      &lt;!-- A contributor, Sebastien Ballesteros --&gt;
+      &lt;li property="schema:contributor" typeof="sa:ContributorRole"&gt;
+        &lt;a property="schema:contributor" href="https://github.com/sballesteros" typeof="schema:Person"&gt;
+          &lt;span property="schema:givenName"&gt;Sebastien&lt;/span&gt;
+          &lt;span property="schema:familyName"&gt;Ballesteros&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"&gt;a&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;!-- The affiliation list --&gt;
+    &lt;ol&gt;
+      &lt;li id="scienceai"&gt;
+        &lt;a href="http://science.ai/" typeof="schema:Corporation"&gt;
+          &lt;span property="schema:name"&gt;science.ai&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/section&gt;
+  …
+&lt;/article&gt;
             </code></pre>
             <figcaption>
               The authors and affiliations section for this document.
