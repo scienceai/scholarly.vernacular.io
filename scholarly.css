@@ -17,6 +17,7 @@ body {
   font-family: "Libre Baskerville", Times, serif;
   background: #f7f7f7;
   color: #434343;
+  overflow-x:hidden;
 }
 header {
   border-top: 8px solid #2196f3;
