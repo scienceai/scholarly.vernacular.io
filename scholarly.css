@@ -166,6 +166,10 @@ section[typeof='sa:ReferenceList'] cite::after {
   content: '»';
 }
 
+figure[typeof~="schema:Table"] {
+  overflow-x: scroll;
+}
+
 table {
   width: 100%;
   font: sans-serif;

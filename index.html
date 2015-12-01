@@ -194,29 +194,33 @@
             The <code>body</code> element must have a <code>prefix</code> attribute, which must
             declare the following mapping:
           </p>
-          <table typeof="schema:Table">
-            <thead>
+
+          <figure typeof="schema:Table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Prefix</th>
+                  <th>URL</th>
+                </tr>
+              </thead>
               <tr>
-                <th>Prefix</th>
-                <th>URL</th>
+                <td>schema</td>
+                <td>http://schema.org/</td>
               </tr>
-            </thead>
-            <tr>
-              <td>schema</td>
-              <td>http://schema.org/</td>
-            </tr>
-            <tr>
-              <td>xsd</td>
-              <td>http://www.w3.org/2001/XMLSchema#</td>
-            </tr>
-            <tr>
-              <td>sa</td>
-              <td>https://ns.science.ai/</td>
-            </tr>
-            <caption>
-              The list of mappings that must be declared by the <code>body</code> element.
-            </caption>
-          </table>
+              <tr>
+                <td>xsd</td>
+                <td>http://www.w3.org/2001/XMLSchema#</td>
+              </tr>
+              <tr>
+                <td>sa</td>
+                <td>https://ns.science.ai/</td>
+              </tr>
+              <caption>
+                The list of mappings that must be declared by the <code>body</code> element.
+              </caption>
+            </table>
+          </figure>
+
           <p>
             Having to declare prefixes is undoubtably an annoyance and it does hurt the human
             authorability of the format (since hand-creating a document essentially requires a
@@ -850,56 +854,60 @@
             with <code>schema:hasPart</code>
             and <code>schema:isBasedOnUrl</code>).
           </p>
-          <table>
-            <caption>
-              Subclass of <code>schema:CreativeWork</code> commonly
-              associated with a Scholarly Article.
-            </caption>
-            <thead>
-              <tr>
-                <td>Creative Work</td>
-                <td>Property</td>
-                <td>Encoding</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>schema:ScholarlyArticle</code></td>
-                <td><code>schema:encoding</code></td>
-                <td><code>sa:DocumentObject</code></td>
-              </tr>
-              <tr>
-                <td><code>sa:Image</code></td>
-                <td><code>schema:encoding</code></td>
-                <td><code>schema:ImageObject</code></td>
-              </tr>
-              <tr>
-                <td><code>sa:Audio</code></td>
-                <td><code>schema:encoding</code></td>
-                <td><code>schema:AudioObject</code></td>
-              </tr>
-              <tr>
-                <td><code>sa:Video</code></td>
-                <td><code>schema:encoding</code></td>
-                <td><code>schema:VideoObject</code></td>
-              </tr>
-              <tr>
-                <td><code>schema:Dataset</code></td>
-                <td><code>schema:distribution</code></td>
-                <td><code>schema:DataDownload</code></td>
-              </tr>
-              <tr>
-                <td><code>schema:Table</code></td>
-                <td><code>schema:encoding</code></td>
-                <td><code>sa:TableObject</code></td>
-              </tr>
-              <tr>
-                <td><code>schema:SoftwareSourceCode</code></td>
-                <td><code>schema:encoding</code></td>
-                <td><code>schema:MediaObject</code></td>
-              </tr>
-            </tbody>
-          </table>
+
+          <figure typeof="schema:Table">
+            <table>
+              <caption>
+                Subclass of <code>schema:CreativeWork</code> commonly
+                associated with a Scholarly Article.
+              </caption>
+              <thead>
+                <tr>
+                  <td>Creative Work</td>
+                  <td>Property</td>
+                  <td>Encoding</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>schema:ScholarlyArticle</code></td>
+                  <td><code>schema:encoding</code></td>
+                  <td><code>sa:DocumentObject</code></td>
+                </tr>
+                <tr>
+                  <td><code>sa:Image</code></td>
+                  <td><code>schema:encoding</code></td>
+                  <td><code>schema:ImageObject</code></td>
+                </tr>
+                <tr>
+                  <td><code>sa:Audio</code></td>
+                  <td><code>schema:encoding</code></td>
+                  <td><code>schema:AudioObject</code></td>
+                </tr>
+                <tr>
+                  <td><code>sa:Video</code></td>
+                  <td><code>schema:encoding</code></td>
+                  <td><code>schema:VideoObject</code></td>
+                </tr>
+                <tr>
+                  <td><code>schema:Dataset</code></td>
+                  <td><code>schema:distribution</code></td>
+                  <td><code>schema:DataDownload</code></td>
+                </tr>
+                <tr>
+                  <td><code>schema:Table</code></td>
+                  <td><code>schema:encoding</code></td>
+                  <td><code>sa:TableObject</code></td>
+                </tr>
+                <tr>
+                  <td><code>schema:SoftwareSourceCode</code></td>
+                  <td><code>schema:encoding</code></td>
+                  <td><code>schema:MediaObject</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
+
         </section>
         <section>
           <h3>Semantic context of a scholarly article</h3>
